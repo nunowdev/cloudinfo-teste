@@ -4,11 +4,13 @@ import axios from "axios";
 import Logo from "./assets/marvel_logo.png";
 import md5 from "md5";
 
-const baseURL = "http://gateway.marvel.com/v1/public/comics"; // base Marvel API URL
+const baseURL = "https://gateway.marvel.com/v1/public/comics"; // base Marvel API URL
 const publicKey = "7c46fd08fb27d8ff113c13d979285c56"; // Public key
 const privateKey = "2e3a6ee57cb759516b5c281b9317842293221da1"; // Private Key
 const time = Number(new Date()); // Get Timestamp
 const hash = md5(time + privateKey + publicKey);
+
+// TEST
 
 function App() {
   const [comicsArr, setComicsArr] = useState([]); // List Comics
@@ -60,7 +62,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `http://gateway.marvel.com/v1/public/comics?orderBy=-focDate&&limit=100&ts=${time}&apikey=${publicKey}&hash=${hash}`
+        `https://gateway.marvel.com/v1/public/comics?orderBy=-focDate&&limit=100&ts=${time}&apikey=${publicKey}&hash=${hash}`
       )
       .then((response) => {
         console.log(response);
